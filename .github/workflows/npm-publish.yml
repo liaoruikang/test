@@ -1,0 +1,26 @@
+name: publish
+
+on:
+  push:
+    branches:
+    - release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: actions/setup-pnpm@v4
+      - name: Install Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: package.json
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+      - name: Install Node.js
+      - name: publish-npm
+        run: pnpm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
