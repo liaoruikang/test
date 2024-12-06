@@ -19,7 +19,6 @@ jobs:
           node-version: package.json
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
-      - name: Install Node.js
       - name: publish-npm
         run: pnpm publish --access public
         env:
