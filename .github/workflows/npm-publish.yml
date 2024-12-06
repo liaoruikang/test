@@ -3,7 +3,7 @@ name: publish
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   release:
@@ -18,13 +18,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
-      - name: Check npm authentication
-        run: npm whoami
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+      - name: Install deps
+        run: pnpm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: publish-npm
-        run: pnpm publish --access public
+        # run: pnpm publish --access public
+        run: echo "test"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
